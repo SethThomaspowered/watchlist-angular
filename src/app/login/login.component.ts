@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectableObservable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -18,6 +19,13 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    console.log(this.loginUserData)
+    this._auth.loginUser(this.loginUserData)
+      .subscribe({
+        next: (r) => {
+          console.log(r)
+          localStorage.setItem('token', r.jwt)
+        },
+        error: (e) => console.log(e)
+      })
   }
 }
