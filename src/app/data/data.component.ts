@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data.component.css']
 })
 export class DataComponent implements OnInit {
-
+  data = [];
+  
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }
