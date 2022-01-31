@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient, HttpContext} from '@angular/common/http';
+import { BYPASS_LOG } from './token-interceptor.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _registerUrl = "http://localhost:9092/auth/users/register";
-  private _loginUrl = "http://localhost:9092/auth/users/login";
+  private _registerUrl = "https://watch-list-api.herokuapp.com/auth/users/register";
+  private _loginUrl = "https://watch-list-api.herokuapp.com/auth/users/login";
   constructor(private http: HttpClient) { }
 
   registerUser(user: any) {
-    return this.http.post<any>(this._registerUrl, user);
+    return this.http.post<any>(this._registerUrl, user, { context: new HttpContext().set(BYPASS_LOG, true) });
   }
 
   loginUser(user: any) {
-    return this.http.post<any>(this._loginUrl, user);
+    return this.http.post<any>(this._loginUrl, user, { context: new HttpContext().set(BYPASS_LOG, true) });
   }
 
   loggedIn() {
     return !!localStorage.getItem('token');
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 }

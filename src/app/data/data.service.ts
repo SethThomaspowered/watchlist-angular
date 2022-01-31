@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  private _dataUrl = "http://localhost:9092/api/watchlists/2/symbols";
+  private _dataUrl = "https://watch-list-api.herokuapp.com/api/watchlists/1/symbols";
 
   constructor(private http: HttpClient) { }
 

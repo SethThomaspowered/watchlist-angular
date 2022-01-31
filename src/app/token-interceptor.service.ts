@@ -1,20 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable, Injector} from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpContextToken } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor{
 
-  constructor() { }
+  constructor(private injector: Injector) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let tokenizedReq = req.clone({
-      setHeaders: {
-        Authorization: 'Bearer xx.yy.zz'
-      }
-    })
-    return next.handle(tokenizedReq);
+    if (req.context.get(BYPASS_LOG) === true) {
+      return next.handle(req);
+    } else {
+      let authService = this.injector.get(AuthService)
+      let tokenizedReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${authService.getToken()}`
+        }
+      })
+      return next.handle(tokenizedReq);
+    }
   }
 }
+
+export const BYPASS_LOG = new HttpContextToken(() => false);
