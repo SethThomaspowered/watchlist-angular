@@ -1,0 +1,15 @@
+<div class="vertical-center d-flex flex-column justify-content-center align-items-center">
+    <h3>Login</h3>
+    <form>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input [(ngModel)]="loginUserData.email" name="email" type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input  [(ngModel)]="loginUserData.password"  name="password" type="password" class="form-control" id="password" required>
+        </div>
+        <button (click)="loginUser()" type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+</div>
