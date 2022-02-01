@@ -1,5 +1,7 @@
-<ul>
-    <li>
-        <a>Watchlist</a>
-    </li>
-</ul>
+<div class="container">
+    <ul>
+        <li *ngFor="let watchlist of watchlists">
+            <a>{{watchlist.name}}</a>
+        </li>
+    </ul>
+</div>
