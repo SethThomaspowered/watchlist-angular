@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (r) => {
           localStorage.setItem('token', r.jwt)
-          this._router.navigate(['data'])
+          this._router.navigate(['home'])
         },
         error: (e) => console.log(e)
       })
