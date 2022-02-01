@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'watchlist-frontend';
+  public isMenuCollapsed = true;
   constructor(private _authService: AuthService){}
 
   loggedIn(){
