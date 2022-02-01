@@ -11,7 +11,7 @@ import { DataComponent } from './data/data.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { DataService } from './data/data.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    NgbActiveModal
   ],
   bootstrap: [AppComponent]
 })

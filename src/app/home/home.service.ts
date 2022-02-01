@@ -15,4 +15,8 @@ export class HomeService {
   getAllTickers(index: any) {
     return this.http.get<any>(this._endpoint + `/${index}/symbols`);
   }
+
+  createWatchList() {
+    
+  }
 }

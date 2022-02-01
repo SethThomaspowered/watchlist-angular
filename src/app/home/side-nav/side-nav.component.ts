@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,7 +9,9 @@ import { HomeService } from '../home.service';
 })
 export class SideNavComponent implements OnInit {
   watchlists: any;
-  constructor(private _homeService: HomeService) { }
+  listName: any;
+
+  constructor(private _homeService: HomeService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this._homeService.getWatchLists().subscribe({
@@ -17,4 +20,11 @@ export class SideNavComponent implements OnInit {
     })
   }
 
+  openVerticallyCentered(content: any) {
+    let modelRef = this.modalService.open(content, { centered: true });
+    modelRef.result
+      .then(() => {})
+      .catch(() => {});
+    
+  }
 }
