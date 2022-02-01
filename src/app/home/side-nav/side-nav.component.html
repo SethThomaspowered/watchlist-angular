@@ -1,7 +1,7 @@
 <div class="container">
     <ul>
-        <li *ngFor="let watchlist of watchlists">
-            <a>{{watchlist.name}}</a>
+        <li *ngFor="let watchlist of watchlists; let i = index">
+            <a routerLink="list/{{ i + 1}}">{{watchlist.name}}</a>
         </li>
     </ul>
 </div>
