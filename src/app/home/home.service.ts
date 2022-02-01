@@ -16,7 +16,7 @@ export class HomeService {
     return this.http.get<any>(this._endpoint + `/${index}/symbols`);
   }
 
-  createWatchList() {
-    
+  createWatchList(listObject: any) {
+    return this.http.post<any>(this._endpoint, listObject);
   }
 }

@@ -9,21 +9,35 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SideNavComponent implements OnInit {
   watchlists: any;
-  listName: any;
+  newList: any = {
+    name: null
+  }
 
   constructor(private _homeService: HomeService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.getWatchListsData();
+  }
+
+  getWatchListsData(){
     this._homeService.getWatchLists().subscribe({
       next: r => this.watchlists = r,
       error: e => console.log(e)
     })
   }
-
+  update() {
+    this.getWatchListsData();
+  }
   openVerticallyCentered(content: any) {
     let modelRef = this.modalService.open(content, { centered: true });
     modelRef.result
-      .then(() => {})
+      .then(() => {
+        this._homeService.createWatchList(this.newList)
+        .subscribe({
+          next: r => this.update(),
+          error: e => console.log(e)
+        });
+      })
       .catch(() => {});
     
   }
