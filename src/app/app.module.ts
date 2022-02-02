@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,19 +10,31 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [ 
     AuthService,

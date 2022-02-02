@@ -13,7 +13,8 @@ export class TokenInterceptorService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.context.get(BYPASS_LOG) === true) {
       return next.handle(req);
-    } else {
+    } 
+    else {
       let authService = this.injector.get(AuthService)
       let tokenizedReq = req.clone({
         setHeaders: {

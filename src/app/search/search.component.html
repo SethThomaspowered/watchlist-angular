@@ -1,0 +1,12 @@
+<div class="container">
+    <form class="d-flex justify-content-center">
+        <mat-form-field>
+        <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" placeholder="Search for stocks">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="dosomething($event.option.value)">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+            {{option.description}} - {{option.displaySymbol}}
+            </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
