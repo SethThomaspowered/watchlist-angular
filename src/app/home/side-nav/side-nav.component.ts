@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',

@@ -6,8 +6,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToolbarModule } from '@syncfusion/ej2-angular-navigations';
-import { TooltipModule } from '@syncfusion/ej2-angular-popups';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +18,7 @@ import { TooltipModule } from '@syncfusion/ej2-angular-popups';
     CommonModule,
     HomeRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ]
 })
 export class HomeModule { }

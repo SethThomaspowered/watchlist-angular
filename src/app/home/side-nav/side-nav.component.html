@@ -1,16 +1,29 @@
-<div class="container m-3 d-flex justify-content-center">
-    <div class="btn-group">
-        <button *ngFor="let watchlist of watchlists; let i = index" class="btn btn-secondary"
-         routerLink="list/{{ i + 1}}" [state]="{name: watchlist.name}">
-         {{watchlist.name}}
-        </button>
-        <button type="button" class="btn btn-primary" (click)="openVerticallyCentered(content)">
-            + New List
-        </button>
+<section id="list-nav">
+    <div class="container m-3 d-flex justify-content-center">
+        <div class="d-flex flex-wrap gap-3">
+            <button *ngFor="let watchlist of watchlists; let i = index" class="btn custom-btn d-flex gap-3" routerLink="list/{{ i + 1}}" [state]="{name: watchlist.name}">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-ul list-icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg>
+                </span>
+                <span style="margin-top:1px;">{{watchlist.name}}</span>
+                
+            </button>
+            <button type="button" class="btn btn-primary d-flex align-items-center gap-1" (click)="openVerticallyCentered(content)">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus plus-icon" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg>
+                </span>
+                <span style="margin-top:1px;">
+                   New List
+                </span>
+            </button>
+        </div>
+
     </div>
-
-</div>
-
+</section>
 
 <ng-template #content let-modal>
     <div class="modal-header">

@@ -1,1 +1,21 @@
+#list-nav button {
+    min-width: 140px;
+}
 
+.custom-btn {
+    border: 1px solid gray;
+    transition: 300ms;
+}
+
+.custom-btn:hover {
+    box-shadow: 0 0 3px rgb(85, 84, 84);
+}
+
+.list-icon {
+    background-color: #F1F3F4;
+}
+
+.plus-icon path{
+    stroke: #ffffff; /* Background color against your svg */
+    stroke-width: 0.7px; /*Between 1px and 2px*/
+}
