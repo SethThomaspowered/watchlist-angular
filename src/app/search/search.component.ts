@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SearchService } from './search.service';
 
@@ -13,7 +14,7 @@ export class SearchComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: any ;
 
-  constructor(private searchService: SearchService){}
+  constructor(private searchService: SearchService, private router: Router){}
 
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class SearchComponent implements OnInit {
     return subject ? subject.description + "-" + subject.displaySymbol : "";
   }
 
-  dosomething(option: any) {
-    console.log(option);
+  redirectToStockDetails(option: any) {
+    this.router.navigate(['symbol', option.symbol]);
   }
 }

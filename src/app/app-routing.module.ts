@@ -18,7 +18,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'symbol/:id',
+    path: 'symbol/:ticker',
     component: StockDetailsComponent
   }
 ];
