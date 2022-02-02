@@ -4,6 +4,7 @@ import { HomeModule } from './home/home.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { StockDetailsComponent } from './stock-details/stock-details.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
     component: RegisterComponent
   },
 
+  {
+    path: 'symbol/:id',
+    component: StockDetailsComponent
+  }
 ];
 
 @NgModule({
