@@ -1,0 +1,44 @@
+#data-table {
+    max-width: 500px;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#data-table .left {
+    text-transform: uppercase;
+}
+#data-table .right {
+    font-size: 16px;
+    font-weight: 500;
+}
+.price-box {
+    height: 60px;
+    padding:10px;
+}
+
+.price-box svg {
+    stroke: #9e0d00; /* Background color against your svg */
+    stroke-width: 1.5px; /*Between 1px and 2px*/
+}
+
+.price-decrease {
+    background-color: #FCE8E6;
+    font-size: 15px;
+    color: #9e0d00;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: -12px;
+    font-weight: 500;
+}
+.price {
+    font-size: 45px;
+    font-weight: 500;
+}
+
+.price-change {
+    font-size: 18px;
+    font-weight: 500;
+    color: #9e0d00;
+}
+

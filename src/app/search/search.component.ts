@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.myControl.valueChanges
-      .pipe(debounceTime(1000),distinctUntilChanged())
+      .pipe(debounceTime(300),distinctUntilChanged())
       .subscribe(value => {
         if(value) {
           this.searchService.search(value).subscribe(response => {
@@ -34,6 +34,6 @@ export class SearchComponent implements OnInit {
   }
 
   redirectToStockDetails(option: any) {
-    this.router.navigate(['symbol', option.symbol]);
+    this.router.navigate(['symbol', option.symbol, { currentStock: JSON.stringify(option) }]);
   }
 }
