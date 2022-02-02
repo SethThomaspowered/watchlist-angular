@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SearchService } from './search.service';
 
 @Component({
@@ -18,15 +18,15 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.myControl.valueChanges
-      .pipe(distinctUntilChanged())
+      .pipe(debounceTime(1000),distinctUntilChanged())
       .subscribe(value => {
-        this.searchService.search(value).subscribe(response => {
-          console.log(response)
-          this.filteredOptions = response;
-        })
+        if(value) {
+          this.searchService.search(value).subscribe(response => {
+            this.filteredOptions = response;
+          })
+        }
       })
   }
-
 
   displayFn(subject: any){
     return subject ? subject.description + "-" + subject.displaySymbol : "";
