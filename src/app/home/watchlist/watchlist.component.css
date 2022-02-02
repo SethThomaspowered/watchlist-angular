@@ -1,0 +1,18 @@
+#list-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-top-right{
+    height: 40px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.edit-menu span{
+    padding-right: 10px;
+}
+
+.edit-menu button {
+    height: 40px;
+}

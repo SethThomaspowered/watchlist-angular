@@ -1,12 +1,14 @@
-<div class="container">
-    <ul>
-        <li *ngFor="let watchlist of watchlists; let i = index">
-            <a routerLink="list/{{ i + 1}}">{{watchlist.name}}</a>
-        </li>
+<div class="container m-3 d-flex justify-content-center">
+    <div class="btn-group">
+        <button *ngFor="let watchlist of watchlists; let i = index" class="btn btn-secondary"
+         routerLink="list/{{ i + 1}}" [state]="{name: watchlist.name}">
+         {{watchlist.name}}
+        </button>
         <button type="button" class="btn btn-primary" (click)="openVerticallyCentered(content)">
             + New List
-          </button>
-    </ul>
+        </button>
+    </div>
+
 </div>
 
 

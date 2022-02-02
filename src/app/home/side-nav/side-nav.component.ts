@@ -32,13 +32,18 @@ export class SideNavComponent implements OnInit {
     let modelRef = this.modalService.open(content, { centered: true });
     modelRef.result
       .then(() => {
-        this._homeService.createWatchList(this.newList)
+        this.createWatchList();
+        this.newList.name = null;
+      })
+      .catch(() => {});
+    
+  }
+
+  createWatchList(){
+    this._homeService.createWatchList(this.newList)
         .subscribe({
           next: r => this.update(),
           error: e => console.log(e)
         });
-      })
-      .catch(() => {});
-    
   }
 }
