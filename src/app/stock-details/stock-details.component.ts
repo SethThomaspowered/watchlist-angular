@@ -32,6 +32,10 @@ export class StockDetailsComponent implements OnInit {
 
     })
   }
+  parentFunc(data:any){
+    this.router.navigate(['symbol', data.symbol]);
+  }
+
 
 
 }

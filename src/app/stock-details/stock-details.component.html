@@ -1,10 +1,11 @@
+<app-search (parentFunc)="parentFunc($event)"></app-search>
 <div class="container">
 <section id="stock-details">
         <div class="details-top d-flex justify-content-between">
             <h1 class="display-1">{{companyData.name}} ({{companyData.ticker}})</h1>
         </div>
         <div class="d-flex align-items-center gap-2 price-box">
-            <h1 class="price">${{stockData.c}}</h1>
+            <h1 class="price">${{(stockData.c).toFixed(2)}}</h1>
             <div *ngIf="stockData.d < 0" class="d-flex gap-2">
                 <div class="price-decrease">
                     <span>
@@ -16,7 +17,7 @@
                         {{myMath.abs(stockData.dp).toFixed(2)}}%
                     </span>
                 </div>
-                <p class="price-change">-${{myMath.abs(stockData.d)}}</p>
+                <p class="price-change">-${{myMath.abs(stockData.d).toFixed(2)}}</p>
             </div>
         
         </div>
