@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class HomeService {
     return this.http.get<any>(this._endpoint);
   }
 
-  getAllTickers(index: any) {
-    return this.http.get<any>(this._endpoint + `/${index}/symbols`);
+  async getAllTickers(index: any) {
+    let value = this.http.get<any>(this._endpoint + `/${index}/symbols`);
+    return await lastValueFrom(value);
   }
 
   createWatchList(listObject: any) {

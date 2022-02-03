@@ -4,6 +4,7 @@ import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StockService } from 'src/app/stock-details/stock.service';
 import { SideNavComponent } from '../side-nav/side-nav.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-watchlist',
@@ -26,23 +27,27 @@ export class WatchlistComponent implements OnInit {
   }
 
   getTickerInfo() {
-    this._homeService.getAllTickers(this.listIndex).subscribe({
-      next: r => {
-        r.map((item:any) => {
+
+    this._homeService.getAllTickers(this.listIndex).then(
+      res => {
+        res.map((item: any) => {
           this.getTickerPrice(item);
+          console.log(res);
         });
-        this.watchlist = r;
+        console.log(res);
+        this.watchlist = res;
         this.watchlistName = history.state.name;
-      },
-      error: e => console.log(e)
-    })
+      }
+    )
 
   }
+
   updateList(){
     this.getTickerInfo();
   }
   getTickerPrice(item: any) {
-    this.stockService.getStockData(item.ticker).subscribe(response => {
+    console.log(item);
+    this.stockService.getStockData(item.ticker).then(response => {
       item.data = response;
     })
   }
