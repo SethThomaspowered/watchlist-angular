@@ -36,9 +36,6 @@
 
         <div *ngIf="watchlist?.length > 0" id="tickers-section" class="">
             <div *ngFor="let item of watchlist" class="tickers-container d-flex justify-content-between mx-3">
-                <pre>
-                    {{item | json}}
-                </pre>
                 <div class="ticker-info-left d-flex gap-2" *ngIf="item">
                     <div class="ticker">
                         {{item.ticker}}
@@ -48,7 +45,7 @@
                     </div>
                 </div>
                 <!-- If current price increases -->
-                <div class="ticker-info-right d-flex" *ngIf="item.data.d > 0 || item.ticker">
+                <div class="ticker-info-right d-flex" *ngIf="item.data.d > 0">
                     <div class="price">
                         ${{item.data.c}}
                     </div>
@@ -66,7 +63,7 @@
                     
                 </div>
                 <!-- If current price decreases -->
-                <div class="ticker-info-right d-flex" *ngIf="item.data.d < 0 || item.ticker">
+                <div class="ticker-info-right d-flex" *ngIf="item.data.d < 0">
                     <div class="price">
                         ${{item.data.c}}
                     </div>
@@ -88,7 +85,6 @@
         </div>
     </div>  
 </div>
-
 
 <ng-template #content let-modal>
     <div>

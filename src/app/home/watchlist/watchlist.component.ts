@@ -37,6 +37,9 @@ export class WatchlistComponent implements OnInit {
     })
 
   }
+  updateList(){
+    this.getTickerInfo();
+  }
   getTickerPrice(item: any) {
     this.stockService.getStockData(item.ticker).subscribe(response => {
       item.data = response;
@@ -52,6 +55,7 @@ export class WatchlistComponent implements OnInit {
       next: r => {
         this._homeService.createTicker(r, this.listIndex).subscribe(res => {
           console.log(res);
+          this.updateList();
         })
       }
     })
