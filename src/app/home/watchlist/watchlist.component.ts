@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,7 @@ export class WatchlistComponent implements OnInit {
   watchlist: any;
   watchlistName: string = "";
   listIndex: any;
-  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService ) { }
+  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -60,4 +60,6 @@ export class WatchlistComponent implements OnInit {
       }
     })
   }
+
+
 }

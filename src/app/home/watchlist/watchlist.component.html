@@ -37,7 +37,7 @@
         <div *ngIf="watchlist?.length > 0" id="tickers-section" class="">
             <div *ngFor="let item of watchlist" class="tickers-container d-flex justify-content-between mx-3">
                 <div class="ticker-info-left d-flex gap-2" *ngIf="item">
-                    <div class="ticker">
+                    <div class="ticker" appRandomColor>
                         {{item.ticker}}
                     </div>
                     <div class="company-name">

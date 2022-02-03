@@ -7,12 +7,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { RandomColorDirective } from './random-color.directive';
+
 
 @NgModule({
   declarations: [
     SideNavComponent,
     WatchlistComponent,
-    HomeComponent
+    HomeComponent,
+    RandomColorDirective
   ],
   imports: [
     CommonModule,
