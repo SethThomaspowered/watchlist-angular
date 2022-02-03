@@ -27,9 +27,8 @@
 }
 
 .tickers-container {
-    width: 700px;
+    width: 800px;
 }
-
 
 .ticker-info-right {
     column-gap: 60px;
@@ -37,7 +36,7 @@
 #tickers-section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 .ticker {
@@ -119,7 +118,14 @@
     opacity: 1.0;
 }
 
+.btn-outline-primary {
+    height: 40px;
+}
 
+button {
+    font-size: 15px;
+    font-weight: 700;
+}
 @media only screen and (max-width: 700px) {
     .ticker-info-left {
         flex-direction: column;
