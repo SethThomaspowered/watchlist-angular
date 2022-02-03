@@ -32,9 +32,7 @@ export class WatchlistComponent implements OnInit {
       res => {
         res.map((item: any) => {
           this.getTickerPrice(item);
-          console.log(res);
         });
-        console.log(res);
         this.watchlist = res;
         this.watchlistName = history.state.name;
       }
@@ -46,7 +44,6 @@ export class WatchlistComponent implements OnInit {
     this.getTickerInfo();
   }
   getTickerPrice(item: any) {
-    console.log(item);
     this.stockService.getStockData(item.ticker).then(response => {
       item.data = response;
     })
@@ -79,7 +76,6 @@ export class WatchlistComponent implements OnInit {
   }
 
   deleteList(){
-    console.log(this.listIndex);
     this._homeService.deleteWatchlist(this.listIndex).subscribe(res => {
       this.router.navigate(['lists']);
     })

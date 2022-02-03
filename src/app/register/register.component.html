@@ -1,16 +1,14 @@
 
 <div class="vertical-center d-flex flex-column justify-content-center align-items-center">
-    <h3>Register</h3>
+    <h1>Register</h1>
     <form>
         <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input [(ngModel)]="registerUserData.emailAddress" name="emailAddress" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            <input [(ngModel)]="registerUserData.emailAddress" name="emailAddress" type="email" class="form-control" id="email" placeholder="Email" required>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input [(ngModel)]="registerUserData.password" name="password" type="password" class="form-control" id="password">
+            <input [(ngModel)]="registerUserData.password" name="password" type="password" class="form-control" id="password" placeholder="Password" required>
         </div>
-        <button (click)="registerUser()" type="submit" class="btn btn-primary">Register</button>
+        <button (click)="registerUser()" type="submit" class="btn btn-primary btn-block btn-large">Register</button>
     </form>
 
 </div>

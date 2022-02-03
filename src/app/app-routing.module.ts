@@ -8,6 +8,11 @@ import { StockDetailsComponent } from './stock-details/stock-details.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'lists'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },

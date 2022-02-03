@@ -25,9 +25,5 @@ export class AppComponent implements OnInit {
     return this._authService.logoutUser();
   }
 
-  parentFunc(data:any){
-    this.router.navigate(['symbol', data.symbol]);
-  }
-
 
 }
