@@ -34,6 +34,6 @@ export class SearchComponent implements OnInit {
   }
 
   redirectToStockDetails(option: any) {
-    this.router.navigate(['symbol', option.symbol, { currentStock: JSON.stringify(option) }]);
+    this.router.navigate(['symbol', option.symbol]);
   }
 }

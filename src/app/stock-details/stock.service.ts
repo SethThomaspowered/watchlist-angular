@@ -15,4 +15,12 @@ export class StockService {
   getStockData(symbol: string) {
     return this.customHttpClient.get(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=sandbox_c7tee7aad3i8dq4u1910`);
   }
+
+  getCompanyDetails(symbol: string) {
+    return this.customHttpClient.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=c7tee7aad3i8dq4u190g`);
+  }
+
+  getCompanyFinancials(symbol: string) {
+      return this.customHttpClient.get(`https://finnhub.io/api/v1/stock/metric?symbol=${symbol}&metric=all&token=c7tee7aad3i8dq4u190g`);
+  }
 }

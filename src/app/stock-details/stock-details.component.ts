@@ -10,21 +10,27 @@ import { Router } from '@angular/router';
 })
 export class StockDetailsComponent implements OnInit {
   stockData: any;
-  stock: any;
+  companyData: any;
+  companyFinancials: any;
   public myMath = Math;
-  constructor(private route: ActivatedRoute, private stockService: StockService, private router: Router) {
-    // this.stock = this.router.getCurrentNavigation()?.extras.state;
-  }
+  constructor(private route: ActivatedRoute, private stockService: StockService, private router: Router) { }
 
   ngOnInit(): void {
     //this.stock = history.state.currentStock;
     this.route.paramMap.subscribe(params => {
+
       let symbol = params.get('ticker') || '';
-      this.stock = JSON.parse(params.get('currentStock') || '');
-      console.log(this.stock.description);
+      
       this.stockService.getStockData(symbol).subscribe(response =>{
         this.stockData = response;
+      });
+      this.stockService.getCompanyDetails(symbol).subscribe(response =>{
+        this.companyData = response;
       })
+      this.stockService.getCompanyFinancials(symbol).subscribe(response =>{
+        this.companyFinancials = response;
+      })
+
     })
   }
 

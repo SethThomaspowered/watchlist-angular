@@ -1,6 +1,6 @@
 <section id="stock-details">
     <div class="container">
-        <h1 class="display-1">{{stock.description}} ({{stock.symbol}})</h1>
+        <h1 class="display-1">{{companyData.name}} ({{companyData.ticker}})</h1>
         <div class="d-flex align-items-center gap-2 price-box">
             <h1 class="price">${{stockData.c}}</h1>
             <div *ngIf="stockData.d < 0" class="d-flex gap-2">
@@ -19,7 +19,7 @@
         
         </div>
         <hr>
-        <div id="data-table">
+        <div id="data-table" *ngIf="stockData.c > 0">
             <div class="d-flex justify-content-between">
                 <p class="left">Open</p>
                 <p class="right">${{stockData.o}}</p>
@@ -34,6 +34,22 @@
                 <p class="left">Day Range</p>
                 <p class="right">${{(stockData.l).toFixed(2)}} - ${{(stockData.h).toFixed(2)}}</p>
             </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <p class="left">Year Range</p>
+                <p class="right">${{ (companyFinancials.metric['52WeekLow']).toFixed(2) }} - ${{ (companyFinancials.metric['52WeekHigh']).toFixed(2) }}</p>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <p class="left">Market Cap</p>
+                <p class="right">${{companyData.marketCapitalization * 1000000 | number: '1.0':'en-US'}} </p>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <p class="left">Outstanding Shares</p>
+                <p class="right">{{companyData.shareOutstanding * 1000000 | number: '1.0':'en-US'}}</p>
+            </div>
+            
         </div>
     </div>
 </section>
