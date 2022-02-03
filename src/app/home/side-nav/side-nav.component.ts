@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 
+import {ChangeDetectorRef} from '@angular/core';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -16,10 +15,15 @@ export class SideNavComponent implements OnInit {
     name: null
   }
 
-  constructor(private _homeService: HomeService, private modalService: NgbModal) {}
+  constructor(private _homeService: HomeService, private modalService: NgbModal) {
+    this._homeService.changeEmitted$.subscribe(data => {
+      this.update();
+    })
+  }
 
   ngOnInit(): void {
     this.getWatchListsData();
+
   }
 
   getWatchListsData(){

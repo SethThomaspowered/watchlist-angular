@@ -1,21 +1,22 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StockService } from 'src/app/stock-details/stock.service';
-import { SideNavComponent } from '../side-nav/side-nav.component';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
   styleUrls: ['./watchlist.component.css']
 })
-export class WatchlistComponent implements OnInit {
+export class WatchlistComponent implements OnInit{
   myMath =  Math;
   watchlist: any;
-  watchlistName: string = "";
   listIndex: any;
+  newList: any = {
+    name: null
+  }
+
   constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService, private router: Router) { }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class WatchlistComponent implements OnInit {
           this.getTickerPrice(item);
         });
         this.watchlist = res;
-        this.watchlistName = history.state.name;
+        this.newList.name = this.watchlist[0].watchLists[0].name;
       }
     )
 
@@ -81,5 +82,20 @@ export class WatchlistComponent implements OnInit {
     })
   }
 
-
+  openRenameBox(content: any){
+    let modelRef = this.modalService.open(content, { centered: true });
+    modelRef.result
+    .then(() => {
+      this.renameList();
+    })
+    .catch(() => {});
+  
+  }
+  renameList() {
+    this._homeService.renameList(this.listIndex, this.newList).subscribe(res => {
+      this._homeService.emitChange({property: 'value'});
+      this.updateList();
+      
+    })
+  }
 }

@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
+  private emitChangeSource = new Subject<any>();
+  changeEmitted$ = this.emitChangeSource.asObservable();
   private _endpoint = "https://watch-list-api.herokuapp.com/api/watchlists";
   constructor(private http: HttpClient) { }
 
@@ -36,5 +38,13 @@ export class HomeService {
 
   deleteTicker(tickerIndex: any, listIndex: any) {
     return this.http.delete<any>(this._endpoint + `/${listIndex}/symbols/${tickerIndex}`);
+  }
+
+  renameList(listIndex: any, listObject: any) {
+    return this.http.put<any>(this._endpoint + `/${listIndex}`, listObject);
+  }
+
+  emitChange(data: {}) {
+    this.emitChangeSource.next(data);
   }
 }
