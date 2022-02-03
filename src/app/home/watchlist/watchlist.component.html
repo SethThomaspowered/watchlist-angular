@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" id="list-section">
     <div id="list-top">
         <div class="list-top-left">
-            <h3>{{watchlistName}}</h3>
+            <h3 class="list-name">{{watchlistName}}</h3>
         </div>
         <div class="list-top-right">
             <button type="button" class="btn btn-primary" (click)="openVerticallyCentered(content)">+ Investment</button>
@@ -27,16 +27,66 @@
         </div>
     </div>
     <hr>
-    <div *ngIf="watchlist?.length == 0">
-        <p>Watchlist is empty</p>
+    <div id="list-bottom" class="">
         
-    </div>
-    <div *ngIf="watchlist?.length > 0">
-        <ul>
-            <li *ngFor="let item of watchlist">{{item.ticker}}: {{item.companyName}}</li>
-        </ul>
-    </div>
+        <div *ngIf="watchlist?.length == 0">
+            <p>Watchlist is empty</p>
+            
+        </div>
 
+        <div *ngIf="watchlist?.length > 0" id="tickers-section" class="">
+            <div *ngFor="let item of watchlist" class="tickers-container d-flex justify-content-between mx-3">
+                <pre>
+                    {{item | json}}
+                </pre>
+                <div class="ticker-info-left d-flex gap-2" *ngIf="item">
+                    <div class="ticker">
+                        {{item.ticker}}
+                    </div>
+                    <div class="company-name">
+                        {{item.companyName}}
+                    </div>
+                </div>
+                <!-- If current price increases -->
+                <div class="ticker-info-right d-flex" *ngIf="item.data.d > 0 || item.ticker">
+                    <div class="price">
+                        ${{item.data.c}}
+                    </div>
+                    <div class="price price-increase">
+                        +${{item.data.d}}
+                    </div>
+                    <div class="price percent-increase text-center">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up up-arrow" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                              </svg>
+                        </span>
+                        {{(item.data.dp).toFixed(2)}}%
+                    </div>
+                    
+                </div>
+                <!-- If current price decreases -->
+                <div class="ticker-info-right d-flex" *ngIf="item.data.d < 0 || item.ticker">
+                    <div class="price">
+                        ${{item.data.c}}
+                    </div>
+                    <div class="price price-decrease">
+                        -${{myMath.abs(item.data.d)}}
+                    </div>
+                    <div class="price percent-decrease text-center">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down down-arrow" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                              </svg>
+                        </span>
+                        {{(myMath.abs(item.data.dp)).toFixed(2)}}%
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>  
 </div>
 
 

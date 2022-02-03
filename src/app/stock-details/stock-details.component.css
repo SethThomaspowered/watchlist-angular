@@ -18,8 +18,8 @@
 }
 
 .price-box svg {
-    stroke: #9e0d00; /* Background color against your svg */
-    stroke-width: 1.5px; /*Between 1px and 2px*/
+    stroke: #9e0d00; 
+    stroke-width: 1.5px;
 }
 
 .price-decrease {

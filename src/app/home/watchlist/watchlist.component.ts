@@ -10,28 +10,50 @@ import { StockService } from 'src/app/stock-details/stock.service';
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit {
+  myMath =  Math;
   watchlist: any;
   watchlistName: string = "";
+  listIndex: any;
   constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      let index = params['id'];
-      this._homeService.getAllTickers(index).subscribe({
-        next: r => {
-          this.watchlist = r;
-          this.watchlistName = history.state.name;
-        },
-        error: e => console.log(e)
-      })
+      this.listIndex = params['id'];
+      this.getTickerInfo();
     })
     
+  }
+
+  getTickerInfo() {
+    this._homeService.getAllTickers(this.listIndex).subscribe({
+      next: r => {
+        r.map((item:any) => {
+          this.getTickerPrice(item);
+        });
+        this.watchlist = r;
+        this.watchlistName = history.state.name;
+      },
+      error: e => console.log(e)
+    })
+
+  }
+  getTickerPrice(item: any) {
+    this.stockService.getStockData(item.ticker).subscribe(response => {
+      item.data = response;
+    })
   }
   openVerticallyCentered(content: any) {
     let modelRef = this.modalService.open(content, { centered: true });
   }
 
-  addToList(symbol: any){
+  addToList(stock: any){
 
+    this.stockService.getCompanyDetails(stock.symbol).subscribe({
+      next: r => {
+        this._homeService.createTicker(r, this.listIndex).subscribe(res => {
+          console.log(res);
+        })
+      }
+    })
   }
 }

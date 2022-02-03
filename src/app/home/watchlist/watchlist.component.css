@@ -8,11 +8,93 @@
     display: flex;
     column-gap: 10px;
 }
-
+.list-name {
+    margin-top: 4px;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 30px;
+}
 .edit-menu span{
     padding-right: 10px;
 }
 
 .edit-menu button {
     height: 40px;
+}
+
+#list-section {
+    max-width: 1000px;
+}
+
+.tickers-container {
+    width: 700px;
+}
+
+
+.ticker-info-right {
+    column-gap: 60px;
+}
+#tickers-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.ticker {
+    background-color: rgb(48, 33, 15);
+    color: white;
+    padding: 3px 13px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.company-name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.price {
+    margin-top: 3px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.price-increase {
+    color: green;
+}
+
+.percent-increase {
+    margin-top: -3px;
+    background-color: #E6F4EA;
+    color: green;
+    border-radius: 10px;
+    padding: 5px 0px;
+    width: 100px;
+}
+
+.up-arrow {
+    stroke: green; 
+    stroke-width: 1.2px;
+}
+
+
+
+.price-decrease {
+    color: #9e0d00;
+}
+
+.percent-decrease {
+    margin-top: -3px;
+    background-color: #FCE8E6;
+    color: #9e0d00;
+    border-radius: 10px;
+    padding: 5px 0px;
+    width: 100px;
+}
+
+.down-arrow {
+    stroke: #9e0d00; 
+    stroke-width: 1.2px;
 }

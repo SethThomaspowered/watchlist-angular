@@ -19,4 +19,12 @@ export class HomeService {
   createWatchList(listObject: any) {
     return this.http.post<any>(this._endpoint, listObject);
   }
+
+  createTicker(tickerObject:any, listIndex:any){
+    let object = {
+      ticker: tickerObject.ticker,
+      companyName: tickerObject.name
+    }
+    return this.http.post<any>(this._endpoint+ `/${listIndex}/symbols`, object);
+  }
 }
