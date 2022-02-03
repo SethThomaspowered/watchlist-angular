@@ -14,3 +14,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-overlay-container{
     z-index: 2000 !important; 
 }
+
+.ngb-toasts {
+    top: unset !important; 
+    bottom: 10px !important;
+    right:20px !important;
+}

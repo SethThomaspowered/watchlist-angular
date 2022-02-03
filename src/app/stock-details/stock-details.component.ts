@@ -20,7 +20,7 @@ export class StockDetailsComponent implements OnInit {
 
       let symbol = params.get('ticker') || '';
       
-      this.stockService.getStockData(symbol).subscribe(response =>{
+      this.stockService.getStockData(symbol).then(response =>{
         this.stockData = response;
       });
       this.stockService.getCompanyDetails(symbol).subscribe(response =>{

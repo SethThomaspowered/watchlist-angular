@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { RandomColorDirective } from './random-color.directive';
-
+import { ToastsContainerComponent } from '../shared/toasts-container/toasts-container.component';
 
 @NgModule({
   declarations: [

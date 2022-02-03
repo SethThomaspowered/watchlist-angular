@@ -1,6 +1,6 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,9 @@ export class StockService {
     this.customHttpClient = new HttpClient(backend);
   }
 
-  getStockData(symbol: string) {
-    return this.customHttpClient.get(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=sandbox_c7tee7aad3i8dq4u1910`);
+  async getStockData(symbol: string) {
+    let val = this.customHttpClient.get(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=sandbox_c7tee7aad3i8dq4u1910`);
+    return await lastValueFrom(val);
   }
 
   getCompanyDetails(symbol: string) {

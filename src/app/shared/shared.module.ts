@@ -7,10 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsContainerComponent } from './toasts-container/toasts-container.component';
 
 @NgModule({
   declarations: [
-    SearchComponent
+    SearchComponent,
+    ToastsContainerComponent
   ],
   imports: [
     CommonModule,
@@ -18,13 +21,15 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule
   ],
   providers:[
     SearchService
   ],
   exports: [
-    SearchComponent
+    SearchComponent,
+    ToastsContainerComponent
   ]
 })
 export class SharedModule { }

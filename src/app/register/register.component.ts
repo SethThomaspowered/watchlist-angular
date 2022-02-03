@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ToastService } from '../shared/toasts-container/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
     password: null
   };
 
-  constructor(private _auth: AuthService, private _router: Router) { }
+  constructor(private _auth: AuthService, private _router: Router, private toastService: ToastService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +23,13 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     this._auth.registerUser(this.registerUserData)
       .subscribe({
-        next: (r) => this._router.navigate(['login']),
-        error: (e) => console.log(e)
+        next: (r) => {
+          this.toastService.showSuccess("Register Sucessfully! Please Login.");
+          this._router.navigate(['login']);
+        },
+        error: (e) => {
+          this.toastService.showError("Register Fails! Please try again.")
+        }
       });
   }
 }
