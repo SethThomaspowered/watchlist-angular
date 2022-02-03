@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StockService } from 'src/app/stock-details/stock.service';
@@ -14,7 +14,7 @@ export class WatchlistComponent implements OnInit {
   watchlist: any;
   watchlistName: string = "";
   listIndex: any;
-  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService) { }
+  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -61,5 +61,11 @@ export class WatchlistComponent implements OnInit {
     })
   }
 
+  deleteList(){
+    this._homeService.deleteWatchlist(this.listIndex).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['lists']);
+    })
+  }
 
 }

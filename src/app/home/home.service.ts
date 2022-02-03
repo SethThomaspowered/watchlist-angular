@@ -27,4 +27,8 @@ export class HomeService {
     }
     return this.http.post<any>(this._endpoint+ `/${listIndex}/symbols`, object);
   }
+
+  deleteWatchlist(listIndex: any) {
+    return this.http.delete<any>(this._endpoint + `/${listIndex}`);
+  }
 }
