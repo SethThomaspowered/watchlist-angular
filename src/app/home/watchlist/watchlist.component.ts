@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StockService } from 'src/app/stock-details/stock.service';
 
 @Component({
   selector: 'app-watchlist',
@@ -11,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class WatchlistComponent implements OnInit {
   watchlist: any;
   watchlistName: string = "";
-  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal) { }
+  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal, private stockService: StockService ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -30,4 +31,7 @@ export class WatchlistComponent implements OnInit {
     let modelRef = this.modalService.open(content, { centered: true });
   }
 
+  addToList(symbol: any){
+
+  }
 }

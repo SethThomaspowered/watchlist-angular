@@ -16,7 +16,6 @@ export class StockDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private stockService: StockService, private router: Router) { }
 
   ngOnInit(): void {
-    //this.stock = history.state.currentStock;
     this.route.paramMap.subscribe(params => {
 
       let symbol = params.get('ticker') || '';
@@ -33,5 +32,6 @@ export class StockDetailsComponent implements OnInit {
 
     })
   }
+
 
 }

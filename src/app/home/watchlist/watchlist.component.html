@@ -42,6 +42,6 @@
 
 <ng-template #content let-modal>
     <div>
-        <app-search></app-search>
+        <app-search (parentFunc)="addToList($event)"></app-search>
     </div>
 </ng-template>

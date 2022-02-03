@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 import { SearchService } from './search.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { SearchService } from './search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @Output('parentFunc') parentFunc: EventEmitter<any> = new EventEmitter();
 
   myControl = new FormControl();
   filteredOptions: any ;
 
-  constructor(private searchService: SearchService, private router: Router){}
+  constructor(private searchService: SearchService){}
 
 
   ngOnInit(): void {
@@ -33,7 +35,8 @@ export class SearchComponent implements OnInit {
     return subject ? subject.description + "-" + subject.displaySymbol : "";
   }
 
-  redirectToStockDetails(option: any) {
-    this.router.navigate(['symbol', option.symbol]);
+  callParent(data: any) {
+    this.parentFunc.emit(data);
   }
+  
 }
