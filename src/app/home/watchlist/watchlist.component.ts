@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StockService } from 'src/app/stock-details/stock.service';
+import { SideNavComponent } from '../side-nav/side-nav.component';
 
 @Component({
   selector: 'app-watchlist',
@@ -45,8 +46,20 @@ export class WatchlistComponent implements OnInit {
       item.data = response;
     })
   }
-  openVerticallyCentered(content: any) {
+  openSearchBar(content: any) {
     let modelRef = this.modalService.open(content, { centered: true });
+  }
+
+  openConfirmBox(content: any, tickerIndex: any) {
+    let modelRef = this.modalService.open(content, { centered: true });
+    modelRef.result
+    .then(() => {
+      this._homeService.deleteTicker( tickerIndex, this.listIndex).subscribe(res => {
+        this.updateList();
+      })
+    })
+    .catch(() => {});
+  
   }
 
   addToList(stock: any){
@@ -54,7 +67,6 @@ export class WatchlistComponent implements OnInit {
     this.stockService.getCompanyDetails(stock.symbol).subscribe({
       next: r => {
         this._homeService.createTicker(r, this.listIndex).subscribe(res => {
-          console.log(res);
           this.updateList();
         })
       }
@@ -62,10 +74,11 @@ export class WatchlistComponent implements OnInit {
   }
 
   deleteList(){
+    console.log(this.listIndex);
     this._homeService.deleteWatchlist(this.listIndex).subscribe(res => {
-      console.log(res);
       this.router.navigate(['lists']);
     })
   }
+
 
 }

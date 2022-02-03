@@ -31,4 +31,8 @@ export class HomeService {
   deleteWatchlist(listIndex: any) {
     return this.http.delete<any>(this._endpoint + `/${listIndex}`);
   }
+
+  deleteTicker(tickerIndex: any, listIndex: any) {
+    return this.http.delete<any>(this._endpoint + `/${listIndex}/symbols/${tickerIndex}`);
+  }
 }

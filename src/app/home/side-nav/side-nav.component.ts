@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,12 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+
   watchlists: any;
   newList: any = {
     name: null
   }
 
-  constructor(private _homeService: HomeService, private modalService: NgbModal) { }
+  constructor(private _homeService: HomeService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.getWatchListsData();

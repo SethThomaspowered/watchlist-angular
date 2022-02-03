@@ -97,3 +97,24 @@
     stroke: #9e0d00; 
     stroke-width: 1.2px;
 }
+
+
+.delete {
+    width: 20px;
+    
+}
+
+.delete svg {
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: 200ms;
+    opacity: 0.0;
+}
+.delete svg:hover{
+    display: block;
+    width: 23px;
+    height: 23px;
+    stroke: #0e0e0e; 
+    stroke-width: 1.2px;
+    opacity: 1.0;
+}
