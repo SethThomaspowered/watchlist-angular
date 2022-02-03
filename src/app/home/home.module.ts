@@ -6,7 +6,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeRoutingModule,
     FormsModule,
     NgbModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

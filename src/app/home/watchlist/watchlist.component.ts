@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../home.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-watchlist',
@@ -10,7 +11,7 @@ import { HomeService } from '../home.service';
 export class WatchlistComponent implements OnInit {
   watchlist: any;
   watchlistName: string = "";
-  constructor(private _homeService: HomeService, private route: ActivatedRoute) { }
+  constructor(private _homeService: HomeService, private route: ActivatedRoute, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -24,6 +25,9 @@ export class WatchlistComponent implements OnInit {
       })
     })
     
+  }
+  openVerticallyCentered(content: any) {
+    let modelRef = this.modalService.open(content, { centered: true });
   }
 
 }

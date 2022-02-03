@@ -10,20 +10,14 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { SearchComponent } from './search/search.component';
 import { StockDetailsComponent } from './stock-details/stock-details.component';
-
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    SearchComponent,
     StockDetailsComponent
   ],
   imports: [
@@ -32,11 +26,8 @@ import { StockDetailsComponent } from './stock-details/stock-details.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    MatAutocompleteModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   providers: [ 
     AuthService,
@@ -47,6 +38,6 @@ import { StockDetailsComponent } from './stock-details/stock-details.component';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
