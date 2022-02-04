@@ -84,6 +84,7 @@ export class WatchlistComponent implements OnInit{
 
   deleteList(){
     this._homeService.deleteWatchlist(this.listIndex).subscribe(res => {
+      this._homeService.emitChange({property: 'value'});
       this.router.navigate(['lists']);
     })
   }

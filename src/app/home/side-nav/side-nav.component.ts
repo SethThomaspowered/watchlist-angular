@@ -29,7 +29,7 @@ export class SideNavComponent implements OnInit {
   getWatchListsData(){
     this._homeService.getWatchLists().subscribe({
       next: r => this.watchlists = r,
-      error: e => console.log(e)
+      error: e => this.watchlists = []
     })
   }
   update() {
