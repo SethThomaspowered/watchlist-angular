@@ -23,6 +23,7 @@ export class WatchlistComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.listIndex = params['id'];
       this.getTickerInfo();
+      this.getListName();
     })
     
   }
@@ -35,10 +36,15 @@ export class WatchlistComponent implements OnInit{
           this.getTickerPrice(item);
         });
         this.watchlist = res;
-        this.newList.name = this.watchlist[0].watchLists[0].name;
       }
     )
 
+  }
+
+  getListName() {
+    this._homeService.getSingleList(this.listIndex).subscribe(res => {
+      this.newList.name = res.name;
+    })
   }
 
   updateList(){
@@ -67,13 +73,13 @@ export class WatchlistComponent implements OnInit{
 
   addToList(stock: any){
 
-    this.stockService.getCompanyDetails(stock.symbol).subscribe({
-      next: r => {
-        this._homeService.createTicker(r, this.listIndex).subscribe(res => {
+    this.stockService.getCompanyDetails(stock.symbol).then(
+      response => {
+        this._homeService.createTicker(response, this.listIndex).subscribe(res => {
           this.updateList();
         })
       }
-    })
+    )
   }
 
   deleteList(){

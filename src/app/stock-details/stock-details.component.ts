@@ -16,21 +16,31 @@ export class StockDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private stockService: StockService, private router: Router) { }
 
   ngOnInit(): void {
+
     this.route.paramMap.subscribe(params => {
 
       let symbol = params.get('ticker') || '';
-      
-      this.stockService.getStockData(symbol).then(response =>{
-        this.stockData = response;
-      });
-      this.stockService.getCompanyDetails(symbol).subscribe(response =>{
-        this.companyData = response;
-      })
-      this.stockService.getCompanyFinancials(symbol).subscribe(response =>{
-        this.companyFinancials = response;
-      })
-
+      this.getStockData(symbol);
+      this.getCompanyDetails(symbol);
+      this.getCompanyFinancials(symbol);
     })
+  }
+  getStockData(symbol: any) {
+    this.stockService.getStockData(symbol).then(response =>{
+      this.stockData = response;
+    });
+  }
+
+  getCompanyDetails(symbol: any){
+    this.stockService.getCompanyDetails(symbol).then(response =>{
+      this.companyData = response;
+    })
+  }
+  getCompanyFinancials(symbol:any) {
+    this.stockService.getCompanyFinancials(symbol).then(response =>{
+      this.companyFinancials = response;
+    })
+
   }
   parentFunc(data:any){
     this.router.navigate(['symbol', data.symbol]);

@@ -20,6 +20,9 @@ export class HomeService {
     return await lastValueFrom(value);
   }
 
+  getSingleList(index: any) {
+    return this.http.get<any>(this._endpoint + `/${index}`);
+  }
   createWatchList(listObject: any) {
     return this.http.post<any>(this._endpoint, listObject);
   }

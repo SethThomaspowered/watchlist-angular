@@ -2,11 +2,11 @@
 <div class="container">
 <section id="stock-details">
         <div class="details-top d-flex justify-content-between">
-            <h1 class="display-1">{{companyData.name}} ({{companyData.ticker}})</h1>
+            <h1 class="display-1">{{companyData?.name}} ({{companyData?.ticker}})</h1>
         </div>
         <div class="d-flex align-items-center gap-2 price-box">
-            <h1 class="price">${{(stockData.c).toFixed(2)}}</h1>
-            <div *ngIf="stockData.d < 0" class="d-flex gap-2">
+            <h1 class="price">${{(stockData?.c).toFixed(2)}}</h1>
+            <div *ngIf="stockData?.d < 0" class="d-flex gap-2">
                 <div class="price-decrease">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -14,43 +14,43 @@
                         </svg>
                     </span>
                     <span>
-                        {{myMath.abs(stockData.dp).toFixed(2)}}%
+                        {{myMath.abs(stockData?.dp).toFixed(2)}}%
                     </span>
                 </div>
-                <p class="price-change">-${{myMath.abs(stockData.d).toFixed(2)}}</p>
+                <p class="price-change">-${{myMath.abs(stockData?.d).toFixed(2)}}</p>
             </div>
         
         </div>
         <hr>
-        <div id="data-table" *ngIf="stockData.c > 0">
+        <div id="data-table" *ngIf="stockData?.c > 0">
             <div class="d-flex justify-content-between">
                 <p class="left">Open</p>
-                <p class="right">${{stockData.o}}</p>
+                <p class="right">${{stockData?.o}}</p>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <p class="left">Previous Close</p>
-                <p class="right">${{stockData.pc}}</p>
+                <p class="right">${{stockData?.pc}}</p>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <p class="left">Day Range</p>
-                <p class="right">${{(stockData.l).toFixed(2)}} - ${{(stockData.h).toFixed(2)}}</p>
+                <p class="right">${{(stockData?.l).toFixed(2)}} - ${{(stockData?.h).toFixed(2)}}</p>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <p class="left">Year Range</p>
-                <p class="right">${{ (companyFinancials.metric['52WeekLow']).toFixed(2) }} - ${{ (companyFinancials.metric['52WeekHigh']).toFixed(2) }}</p>
+                <p class="right">${{ (companyFinancials?.metric['52WeekLow']).toFixed(2) }} - ${{ (companyFinancials?.metric['52WeekHigh']).toFixed(2) }}</p>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <p class="left">Market Cap</p>
-                <p class="right">${{companyData.marketCapitalization * 1000000 | number: '1.0':'en-US'}} </p>
+                <p class="right">${{companyData?.marketCapitalization * 1000000 | number: '1.0':'en-US'}} </p>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <p class="left">Outstanding Shares</p>
-                <p class="right">{{companyData.shareOutstanding * 1000000 | number: '1.0':'en-US'}}</p>
+                <p class="right">{{companyData?.shareOutstanding * 1000000 | number: '1.0':'en-US'}}</p>
             </div>
             
         </div>
